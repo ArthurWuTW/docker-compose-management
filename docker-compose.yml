@@ -1,6 +1,6 @@
 version: "3"
 services:
-    project-postgres-db_1: # service name
+    project-postgres-db: # service name
         build:
             context: ./postgres-db/dependencies # Dockerfile DIR
             args:
@@ -8,14 +8,14 @@ services:
                 HOST_USER_GID: ${HOST_USER_GID}
                 HOST_USER_UID: ${HOST_USER_UID}
                 TIMEZONE: ${TIMEZONE}
-        image: project-postgres-db_1
-        container_name: project-postgres-db_1 # container name
+        image: project-postgres-db
+        container_name: project-postgres-db # container name
         ports:
-            - "1111:1111"
+            - "5432:5432"
         volumes:
             - /tmp/.X11-unix:/tmp/.X11-unix
             - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
+            - ${DB_TMP_DIR}/postgresql:/var/lib/postgresql
         environment:
             - DISPLAY=${DISPLAY}
         command: bash -c "sudo service postgresql start && infinite-loop"
-
