@@ -17,5 +17,5 @@ services:
             - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
         environment:
             - DISPLAY=${DISPLAY}
-        command: infinite-loop
+        command: bash -c "sudo service postgresql start && infinite-loop"
 
