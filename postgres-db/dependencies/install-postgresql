@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+source utils.sh
+
+apt-get install -y \
+    postgresql \
+    postgresql-contrib \
+    || exit_on_error
+sudo pip3 install psycopg2-binary || exit_on_error
+
+# postgresql configuration
+sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/9.5/main/postgresql.conf
+sed -i '/# IPv4 local connections:/a host    all             all             0.0.0.0/0            md5' /etc/postgresql/9.5/main/pg_hba.conf

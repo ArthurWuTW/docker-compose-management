@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+source $(dirname $0)/project/common.sh
+
+docker stop $CONTAINER_NAME

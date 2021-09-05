@@ -1,0 +1,21 @@
+version: "3"
+services:
+    project-postgres-db_1: # service name
+        build:
+            context: ./postgres-db/dependencies # Dockerfile DIR
+            args:
+                CONTAINER_USER: ${CONTAINER_USER}
+                HOST_USER_GID: ${HOST_USER_GID}
+                HOST_USER_UID: ${HOST_USER_UID}
+                TIMEZONE: ${TIMEZONE}
+        image: project-postgres-db_1
+        container_name: project-postgres-db_1 # container name
+        ports:
+            - "1111:1111"
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
+        environment:
+            - DISPLAY=${DISPLAY}
+        command: infinite-loop
+
