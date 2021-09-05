@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+export EXTRA_CONTAINER_OPTS="\
+    --detach \
+    --init
+"
+
+$(dirname $0)/run-container $@

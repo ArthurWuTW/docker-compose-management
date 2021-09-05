@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# because docker /bin/bash -j (login mode) will not run /etc/profile.d
+# export CUDA_HOME=/usr/local/cuda
+# export LD_LIBRARY_PATH=/usr/local/cuda/lib64:"$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+# export PATH=/usr/local/cuda/bin:$PATH
+
+cd /home/$CONTAINER_USER
+/bin/bash -l # -l : login

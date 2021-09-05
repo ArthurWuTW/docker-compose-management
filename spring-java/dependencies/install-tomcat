@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -x
+source utils.sh
+
+cd /home/${CONTAINER_USER:?}
+mkdir tomcat
+cd tomcat
+wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.52/bin/apache-tomcat-9.0.52.tar.gz
+tar -xvf apache-tomcat-9.0.52.tar.gz --directory ./
+chown -R ${CONTAINER_USER:?}:${CONTAINER_USER:?} /home/${CONTAINER_USER:?}/tomcat/*
+rm apache-tomcat-9.0.52.tar.gz

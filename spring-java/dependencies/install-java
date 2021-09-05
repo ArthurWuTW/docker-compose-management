@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -x
+source utils.sh
+
+cd /home/${CONTAINER_USER:?}
+mkdir lib
+cd lib
+wget https://cdn.azul.com/zulu/bin/zulu8.56.0.21-ca-jdk8.0.302-linux_x64.tar.gz || exit_on_error
+tar -xvf zulu8.56.0.21-ca-jdk8.0.302-linux_x64.tar.gz --directory ./
+rm zulu8.56.0.21-ca-jdk8.0.302-linux_x64.tar.gz
+chown ${CONTAINER_USER:?}:${CONTAINER_USER:?} /home/${CONTAINER_USER:?}/lib/*

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+$(dirname $0)/project/pulseaudio_socket
+$(dirname $0)/project/start-container $@ infinite-loop

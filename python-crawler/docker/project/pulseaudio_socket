@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ ! -e /tmp/pulseaudio.socket ]; then
+    pactl \
+    load-module \
+    module-native-protocol-unix \
+    socket=/tmp/pulseaudio.socket
+fi
+
+echo "\
+default-server = unix:/tmp/pulseaudio.socket
+autospawn = no
+daemon-binary = /bin/true
+enable-shm = false\
+" > /tmp/pulseaudio.client.conf

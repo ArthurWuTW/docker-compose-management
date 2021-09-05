@@ -19,3 +19,42 @@ services:
         environment:
             - DISPLAY=${DISPLAY}
         command: bash -c "sudo service postgresql start && infinite-loop"
+
+        
+    project-python-crawler: # service name
+        build:
+            context: ./python-crawler/dependencies # Dockerfile DIR
+            args:
+                CONTAINER_USER: ${CONTAINER_USER}
+                HOST_USER_GID: ${HOST_USER_GID}
+                HOST_USER_UID: ${HOST_USER_UID}
+                TIMEZONE: ${TIMEZONE}
+        image: project-python-crawler
+        container_name: project-python-crawler # container name
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
+        environment:
+            - DISPLAY=${DISPLAY}
+        command: bash -c "infinite-loop"
+
+
+    project-spring-java: # service name
+        build:
+            context: ./spring-java/dependencies # Dockerfile DIR
+            args:
+                CONTAINER_USER: ${CONTAINER_USER}
+                HOST_USER_GID: ${HOST_USER_GID}
+                HOST_USER_UID: ${HOST_USER_UID}
+                TIMEZONE: ${TIMEZONE}
+        image: project-spring-java
+        container_name: project-spring-java # container name
+        ports:
+            - "7002:7002"
+            - "7003:8080"
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
+        environment:
+            - DISPLAY=${DISPLAY}
+        command: bash -c "/home/${CONTAINER_USER}/tomcat/apache-tomcat-9.0.52/bin/startup.sh && infinite-loop"

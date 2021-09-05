@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+sudo apt-get update
+
+#install getopts dependencies
+sudo apt-get install -y util-linux
+
+reboot=false
+docker_hello_world_test=false
+
+while getopts "tr" o;
+do
+  case "$o" in
+    t)
+      docker_hello_world_test=true
+    ;;
+    r)
+      reboot=true
+    ;;
+  esac
+done
+
+sudo apt-get update
+sudo apt-get install -y\
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+echo "========================================"
+echo "hello world in docker : $docker_hello_world_test"
+echo "reboot : $reboot"
+echo "========================================"
+
+
+if $docker_hello_world_test ;
+then
+  echo "docker hello world test"
+  sudo docker run hello-world
+fi
+
+if $reboot ;
+then
+  echo "setup usermod and then reboot"
+  sudo usermod -a -G docker $USER
+  
+  for count in $(seq 20 -1 1)
+  do 
+    echo "ready to reboot after $count seconds..."
+    sleep 1
+  done
+  sudo reboot
+fi
+

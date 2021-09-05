@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+source utils.sh
+sudo su - user
+mkdir /home/user/flair_cache
+pip3 install -r requirements.txt || exit_on_error
+python3 init_download_flair_pkg.py || exit_on_error

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+source utils.sh
+
+groupadd --gid ${HOST_USER_GID:?} ${CONTAINER_USER:?} || exit_on_error
+
+useradd \
+    --create-home \
+    --shell /bin/bash \
+    --uid ${HOST_USER_GID:?} \
+    --gid ${CONTAINER_USER:?} \
+    ${CONTAINER_USER:?} \
+    || exit_on_error
+
+echo "export PS1=\"(container) \$PS1\"" >> \
+    /home/${CONTAINER_USER:?}/.bashrc \
+    || exit_on_error
+
+echo "export PS1=\"(container) \$PS1\"" >> /root/.bashrc \
+    || exit_on_error
+
+
+apt-get update
+apt-get install -y sudo || exit_on_error
+echo "${CONTAINER_USER:?} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
+    || exit_on_error

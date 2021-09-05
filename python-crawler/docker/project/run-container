@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -x
+xhost +local:
+
+source $(dirname $0)/common.sh
+source $(dirname $0)/utils.sh
+
+GRAPHICS_OPTS="\
+    --env DISPLAY=$DISPLAY \
+    --volume /tmp/.X11-unix:/tmp/.X11-unix \
+"
+parse_arguments() {
+    COMMAND=""
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            *)
+                COMMAND+="$1 "
+            shift;;
+        esac
+    done
+}
+
+release_persistent_volume() {
+    echo Releasing persistent volume ...
+    docker volume rm ${CONTAINER_PERSISTENT_VOLUME:?} || exit_on_error
+}
+
+run_container() {
+
+    docker run \
+        --privileged \
+        --name $CONTAINER_NAME \
+        --rm \
+        --user $CONTAINER_USER \
+        --volume $REPO_DIR:$CONTAINER_REPO_DIR \
+        --volume ${CONTAINER_PERSISTENT_VOLUME:?}:$CONTAINER_PERSISTENT_DIR \
+        --volume $HOME/Desktop:/home/$CONTAINER_USER/Desktop \
+        $EXTRA_CONTAINER_OPTS \
+        $GRAPHICS_OPTS \
+        $IMAGE_NAME \
+        $COMMAND || exit_on_error
+}
+
+parse_arguments $@
+run_container $@

@@ -21,4 +21,5 @@ do
     fi
 done
 
-docker-compose restart ${arr[ind]}
+docker-compose stop ${arr[ind]}
+docker-compose up --build --detach ${arr[ind]}
