@@ -1,3 +1,5 @@
 #!/bin/bash
+export WORKSPACE=$PWD
 
-docker-compose up --build --detach
+cd $WORKSPACE/machine-main && docker-compose up --build --detach
+cd $WORKSPACE/machine-hotstandby && docker-compose up --build --detach

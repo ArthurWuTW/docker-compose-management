@@ -1,0 +1,22 @@
+version: "3"
+services:
+    
+    project-postgres-db-standby: # service name
+        build:
+            context: ../docker-files/postgres-db/dependencies # Dockerfile DIR
+            args:
+                CONTAINER_USER: ${CONTAINER_USER}
+                HOST_USER_GID: ${HOST_USER_GID}
+                HOST_USER_UID: ${HOST_USER_UID}
+                TIMEZONE: ${TIMEZONE}
+        image: project-postgres-db # same image
+        container_name: project-postgres-db-standby # container name
+        ports:
+            - "4432:5432"
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
+            - ${DB_TMP_STANDBY_DIR}/postgresql:/var/lib/postgresql
+        environment:
+            - DISPLAY=${DISPLAY}
+        command: bash -c "sudo chown -R postgres:postgres /var/lib/postgresql && sudo service postgresql start && infinite-loop"

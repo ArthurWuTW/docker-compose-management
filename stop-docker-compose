@@ -1,1 +1,5 @@
-docker-compose down
+#!/bin/bash
+export WORKSPACE=$PWD
+
+cd $WORKSPACE/machine-main && docker-compose down
+cd $WORKSPACE/machine-hotstandby && docker-compose down
