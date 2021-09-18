@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+git clone https://github.com/ArthurWuTW/spring-boot-project
+cd spring-boot-project && ./run-build.sh

@@ -68,6 +68,12 @@ COPY install-dbeaver utils.sh ./
 RUN ./install-dbeaver
 RUN rm install-dbeaver utils.sh
 
+# Copy deploy-spring-boot-project-from-git-by-dir
+COPY deploy-spring-boot-project-from-git-by-dir ./
+RUN ./deploy-spring-boot-project-from-git-by-dir
+RUN rm deploy-spring-boot-project-from-git-by-dir
+RUN rm -r spring-boot-project
+
 COPY enter-container-shell \
     infinite-loop \
     /usr/local/bin/
