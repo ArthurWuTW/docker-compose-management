@@ -11,7 +11,7 @@ services:
         image: project-postgres-db
         container_name: project-postgres-db # container name
         ports:
-            - "5432:5432"
+            - "${HOST_PORT_DB}:5432"
         volumes:
             - /tmp/.X11-unix:/tmp/.X11-unix
             - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
@@ -50,8 +50,8 @@ services:
         image: project-spring-java
         container_name: project-spring-java # container name
         ports:
-            - "7002:7002"
-            - "7003:8080"
+            - "${HOST_PORT_TOMCAT}:7002"
+            - "${HOST_PORT_ECLIPSE_TOMCAT}:8080"
         volumes:
             - /tmp/.X11-unix:/tmp/.X11-unix
             - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop

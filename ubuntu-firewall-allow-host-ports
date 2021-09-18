@@ -1,0 +1,16 @@
+#!/bin/bash
+export WORKSPACE=$PWD
+
+
+list=(` ls | grep machine | awk '{split($0, arr, "-"); print arr[2]}' `)
+
+for((i=0;i<${#list[@]};i++));
+do
+    cd $WORKSPACE/machine-${list[i]}
+    port_list=(` cat .env | grep HOST_PORT | awk '{split($0, arr, "="); print arr[2]}' `)
+    
+    for((j=0;j<${#port_list[@]};j++));
+    do
+        sudo ufw allow ${port_list[j]}
+    done
+done

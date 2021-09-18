@@ -43,7 +43,8 @@ RUN apt-get update \
         python3-pyproj \
         python3-scipy \
         python3-yaml \
-        curl
+        curl \
+        cron
 
 COPY enter-container-shell \
     infinite-loop \
