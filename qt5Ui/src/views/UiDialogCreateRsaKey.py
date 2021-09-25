@@ -25,14 +25,17 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
         if(self.isSuccess(self.processor.connectBySshAndGenerateRsaKey(sshTarget))):
             Dialog.accept()
         else:
-            self.MessageBox.setWindowTitle("Error")
-            self.MessageBox.setText("SSH connection failed")
-            self.MessageBox.exec_()
-
+            self.popUpError("SSH connection failed")
+            
     def isSuccess(self, status):
         if(status=="Success"):
             return True
         return False
+    
+    def popUpError(self, message):
+        self.MessageBox.setWindowTitle("Error")
+        self.MessageBox.setText(message)
+        self.MessageBox.exec_()
 
 if __name__ == "__main__":
     import sys
