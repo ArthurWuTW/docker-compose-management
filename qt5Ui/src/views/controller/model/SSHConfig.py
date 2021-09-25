@@ -4,19 +4,19 @@ class SSHConfig():
         self.port = None
         self.username = None
         self.password = None
-    def setIP(ip):
+    def setIP(self, ip):
         self.ip = ip
-    def setPort(port):
+    def setPort(self, port):
         self.port = port
-    def setUsername(username):
+    def setUsername(self, username):
         self.username = username
-    def setPassword(password):
+    def setPassword(self, password):
         self.password = password
-    def getIP():
+    def getIP(self):
         return self.ip
-    def getPort():
+    def getPort(self):
         return self.port
-    def getUsername():
+    def getUsername(self):
         return self.username
-    def getPassword():
+    def getPassword(self):
         return self.password

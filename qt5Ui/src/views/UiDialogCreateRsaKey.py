@@ -1,6 +1,7 @@
 from codeGen.Ui_DialogCreateRsaKeyBase import Ui_DialogCreateRsaKeyBase
 from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.DialogCreateRsaKeyProcessor import DialogCreateRsaKeyProcessor
+from controller.model.SSHConfig import SSHConfig
 
 class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
 
@@ -12,15 +13,26 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
         super().setupUi(Dialog)
         self.ButtonCreateRsaKey.clicked.connect(lambda: self.clickButtonCreateRsaKey(Dialog))
         self.ButtonExit.clicked.connect(Dialog.reject)
+        self.MessageBox = QtWidgets.QMessageBox()
 
     def clickButtonCreateRsaKey(self, Dialog):
-        print(self.lineEditIP.text())
-        print(self.lineEditUsername.text())
-        print(self.lineEditPassword.text())
-        print(self.lineEditPort.text())
-        Dialog.accept()
+        sshTarget = SSHConfig()
+        sshTarget.setIP(self.lineEditIP.text())
+        sshTarget.setUsername(self.lineEditUsername.text())
+        sshTarget.setPassword(self.lineEditPassword.text())
+        sshTarget.setPort(self.lineEditPort.text())
 
+        if(self.connectSuccess(self.processor.connect(sshTarget))):
+            Dialog.accept()
+        else:
+            self.MessageBox.setWindowTitle("Error")
+            self.MessageBox.setText("SSH connection failed")
+            self.MessageBox.exec_()
 
+    def connectSuccess(self, status):
+        if(status=="Success"):
+            return True;
+        return False;
 
 if __name__ == "__main__":
     import sys
