@@ -1,4 +1,4 @@
-from codeGen.MainWindowBase import Ui_MainWindowBase
+from codeGen.Ui_MainWindowBase import Ui_MainWindowBase
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class UiMainWindow(Ui_MainWindowBase):

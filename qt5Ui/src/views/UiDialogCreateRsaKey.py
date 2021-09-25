@@ -1,4 +1,4 @@
-from codeGen.DialogCreateRsaKeyBase import Ui_DialogCreateRsaKeyBase
+from codeGen.Ui_DialogCreateRsaKeyBase import Ui_DialogCreateRsaKeyBase
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
