@@ -7,8 +7,8 @@ class UiMainWindow(Ui_MainWindowBase):
         super().__init__()
         self.qDialogCreateRsaKey = None
 
-    def setupUi(self, UiMainWindow):
-        super().setupUi(UiMainWindow)
+    def setupUi(self, Dialog):
+        super().setupUi(Dialog)
         self.actionCreate_Rsa_Key.triggered.connect(self.showDialogCreateRsaKeyCallback)
 
     def showDialogCreateRsaKeyCallback(self):

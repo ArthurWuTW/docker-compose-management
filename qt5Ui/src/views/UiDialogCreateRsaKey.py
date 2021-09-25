@@ -8,15 +8,18 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
         super().__init__()
         self.processor = DialogCreateRsaKeyProcessor()
 
-    def setupUi(self, UiDialogCreateRsaKey):
-        super().setupUi(UiDialogCreateRsaKey)
-        self.ButtonCreateRsaKey.clicked.connect(self.clickButtonCreateRsaKey)
+    def setupUi(self, Dialog):
+        super().setupUi(Dialog)
+        self.ButtonCreateRsaKey.clicked.connect(lambda: self.clickButtonCreateRsaKey(Dialog))
+        self.ButtonExit.clicked.connect(Dialog.reject)
 
-    def clickButtonCreateRsaKey(self):
+    def clickButtonCreateRsaKey(self, Dialog):
         print(self.lineEditIP.text())
         print(self.lineEditUsername.text())
         print(self.lineEditPassword.text())
         print(self.lineEditPort.text())
+        Dialog.accept()
+
 
 
 if __name__ == "__main__":
