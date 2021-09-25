@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogCreateRsaKey</class>
- <widget class="QDialog" name="DialogCreateRsaKey">
+ <class>DialogCreateRsaKeyBase</class>
+ <widget class="QDialog" name="DialogCreateRsaKeyBase">
   <property name="geometry">
    <rect>
     <x>0</x>
