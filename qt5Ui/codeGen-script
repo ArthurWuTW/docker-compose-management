@@ -1,10 +1,12 @@
 #!/bin/bash
 
+export CODEGEN_PATH=src/views/codeGen
+
 list=(` ls ui/ | grep .ui | awk '{split($0, arr, "."); print arr[1]}' `)
 
-rm src/codeGen/*.py
+rm $CODEGEN_PATH/*.py
 
 for((i=0;i<${#list[@]};i++));
 do
-    pyuic5 -x ui/${list[i]}.ui -o src/codeGen/${list[i]}.py
+    pyuic5 -x ui/${list[i]}.ui -o $CODEGEN_PATH/${list[i]}.py
 done
