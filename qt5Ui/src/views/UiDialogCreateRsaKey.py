@@ -1,7 +1,7 @@
 from codeGen.Ui_DialogCreateRsaKeyBase import Ui_DialogCreateRsaKeyBase
 from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.DialogCreateRsaKeyProcessor import DialogCreateRsaKeyProcessor
-from controller.model.SSHConfig import SSHConfig
+from model.SSHConfig import SSHConfig
 
 class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
 
@@ -36,12 +36,3 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
         self.MessageBox.setWindowTitle("Error")
         self.MessageBox.setText(message)
         self.MessageBox.exec_()
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    qDialog = QtWidgets.QDialog()
-    ui = UiDialogCreateRsaKey()
-    ui.setupUi(qDialog)
-    qDialog.show()
-    sys.exit(app.exec_())

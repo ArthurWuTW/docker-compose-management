@@ -16,12 +16,3 @@ class UiMainWindow(Ui_MainWindowBase):
         ui = UiDialogCreateRsaKey()
         ui.setupUi(self.qDialogCreateRsaKey)
         self.qDialogCreateRsaKey.show()
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    qWindow = QtWidgets.QMainWindow()
-    ui = UiMainWindow()
-    ui.setupUi(qWindow)
-    qWindow.show()
-    sys.exit(app.exec_())
