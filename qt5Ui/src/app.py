@@ -6,16 +6,15 @@ class ConfigJsonParser():
     def parse(self, file):
         with open(file) as jsonFile:
             self.data = json.load(jsonFile)
-    def getJsonData(self):
+    def getDictData(self):
         return self.data
     
 class SubmodulePackageRelativePathImporter():
     def __init__(self):
-        self.parser = ConfigJsonParser()
+        self.jsonParser = ConfigJsonParser()
     def importSubmoduleDependencyPath(self, file):
-        self.parser.parse(file)
-        print(self.parser.getJsonData())
-        for path in self.parser.getJsonData()['packageRelativePath']:
+        self.jsonParser.parse(file)
+        for path in self.jsonParser.getDictData()['packageRelativePath']:
             sys.path.append(path)
 
 if __name__ == "__main__":
