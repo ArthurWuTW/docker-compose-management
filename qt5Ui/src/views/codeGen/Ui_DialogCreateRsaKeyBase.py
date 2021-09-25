@@ -41,9 +41,9 @@ class Ui_DialogCreateRsaKeyBase(object):
         self.ButtonExit = QtWidgets.QPushButton(DialogCreateRsaKeyBase)
         self.ButtonExit.setGeometry(QtCore.QRect(90, 240, 99, 27))
         self.ButtonExit.setObjectName("ButtonExit")
-        self.CreateRsaKeyButton = QtWidgets.QPushButton(DialogCreateRsaKeyBase)
-        self.CreateRsaKeyButton.setGeometry(QtCore.QRect(240, 240, 171, 27))
-        self.CreateRsaKeyButton.setObjectName("CreateRsaKeyButton")
+        self.ButtonCreateRsaKey = QtWidgets.QPushButton(DialogCreateRsaKeyBase)
+        self.ButtonCreateRsaKey.setGeometry(QtCore.QRect(240, 240, 171, 27))
+        self.ButtonCreateRsaKey.setObjectName("ButtonCreateRsaKey")
 
         self.retranslateUi(DialogCreateRsaKeyBase)
         QtCore.QMetaObject.connectSlotsByName(DialogCreateRsaKeyBase)
@@ -56,7 +56,7 @@ class Ui_DialogCreateRsaKeyBase(object):
         self.labelPort.setText(_translate("DialogCreateRsaKeyBase", "Port"))
         self.labelPassword.setText(_translate("DialogCreateRsaKeyBase", "Password"))
         self.ButtonExit.setText(_translate("DialogCreateRsaKeyBase", "Exit"))
-        self.CreateRsaKeyButton.setText(_translate("DialogCreateRsaKeyBase", "Create RSA key"))
+        self.ButtonCreateRsaKey.setText(_translate("DialogCreateRsaKeyBase", "Create RSA key"))
 
 
 if __name__ == "__main__":

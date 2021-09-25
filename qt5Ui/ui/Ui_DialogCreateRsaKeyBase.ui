@@ -118,7 +118,7 @@
     <string>Exit</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="CreateRsaKeyButton">
+  <widget class="QPushButton" name="ButtonCreateRsaKey">
    <property name="geometry">
     <rect>
      <x>240</x>
