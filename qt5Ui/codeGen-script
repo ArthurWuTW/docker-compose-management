@@ -1,0 +1,8 @@
+#!/bin/bash
+
+list=(` ls ui/ | grep .ui | awk '{split($0, arr, "."); print arr[1]}' `)
+
+for((i=0;i<${#list[@]};i++));
+do
+    pyuic5 -x ui/${list[i]}.ui -o src/codeGen/${list[i]}.py
+done

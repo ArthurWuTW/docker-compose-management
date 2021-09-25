@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>DialogCreateRsaKey</class>
+ <widget class="QDialog" name="DialogCreateRsaKey">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -105,23 +105,10 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="ButtonExit">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>141</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Test Connection</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
+     <x>90</x>
      <y>240</y>
      <width>99</width>
      <height>27</height>
@@ -131,17 +118,17 @@
     <string>Exit</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="CreateRsaKeyButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>240</x>
      <y>240</y>
-     <width>99</width>
+     <width>171</width>
      <height>27</height>
     </rect>
    </property>
    <property name="text">
-    <string>OK</string>
+    <string>Create RSA key</string>
    </property>
   </widget>
  </widget>
