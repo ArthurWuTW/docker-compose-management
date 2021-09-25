@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CODEGEN_PATH=src/views/codeGen
+export CODEGEN_PATH=src/codeGen
 
 list=(` ls ui/ | grep .ui | awk '{split($0, arr, "."); print arr[1]}' `)
 

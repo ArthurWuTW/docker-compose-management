@@ -1,5 +1,5 @@
 from codeGen.Ui_MainWindowBase import Ui_MainWindowBase
-from UiDialogCreateRsaKey import UiDialogCreateRsaKey
+from views.UiDialogCreateRsaKey import UiDialogCreateRsaKey
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class UiMainWindow(Ui_MainWindowBase):
