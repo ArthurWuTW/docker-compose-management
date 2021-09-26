@@ -17,3 +17,6 @@ class MainWindowProcessor():
     
     def saveProjectDirAndDockerComposeTypes(self, projectDir):
         self.projectDirDAO.saveProjectDirAndDockerComposeTypes(projectDir)
+    
+    def updateDockerComposeType(self, machineInfo):
+        self.conDAO.updateDockerComposeType(machineInfo)

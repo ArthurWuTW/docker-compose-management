@@ -1,4 +1,5 @@
 from model.SSHConfig import SSHConfig
+from model.MachineInfo import MachineInfo
 import os
 from utils.JsonFileUtil import JsonFileUtil
 from utils.Const import Const
@@ -28,4 +29,11 @@ class ConnectionDataDAO():
         return self.data
 
     def refresh(self):
+        self.data = self.fileUtil.getConnectionJson()
+
+    def updateDockerComposeType(self, machineInfo):
+        connection = next(x for x in self.data['data'] if x['machine'] == machineInfo.getMachine())
+        connection['dockerComposeType'] = machineInfo.getDockerComposeType()
+
+        self.fileUtil.saveFile(self.data)
         self.data = self.fileUtil.getConnectionJson()

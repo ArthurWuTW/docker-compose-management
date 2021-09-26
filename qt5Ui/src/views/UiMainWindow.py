@@ -2,6 +2,7 @@ from codeGen.Ui_MainWindowBase import Ui_MainWindowBase
 from views.UiDialogCreateRsaKey import UiDialogCreateRsaKey
 from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.MainWindowProcessor import MainWindowProcessor 
+from model.MachineInfo import MachineInfo
 
 class UiMainWindow(Ui_MainWindowBase):
     def __init__(self):
@@ -15,12 +16,22 @@ class UiMainWindow(Ui_MainWindowBase):
         super().setupUi(Dialog)
         self.actionCreate_Rsa_Key.triggered.connect(self.showDialogCreateRsaKeyCallback)
         self.treeWidgetMachineStatus.itemClicked.connect(self.onItemClicked)
+        self.pushButtonSave.clicked.connect(self.saveSelectedDockerComposeType)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
         self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
         self.updateCombobox([''])
         self.updateTreeWidget()
+    
+    def saveSelectedDockerComposeType(self):
+        machineInfo = MachineInfo()
+        machineInfo.setMachine(self.lineEditMachineName.text())
+        machineInfo.setDockerComposeType(self.comboBox.currentText())
+        self.processor.updateDockerComposeType(machineInfo)
+        self.connectionData = self.processor.getConDataFromDAO()
+        self.updateTreeWidget()
 
     def updateTreeWidget(self):
+        self.treeWidgetMachineStatus.clear()
         for con in self.connectionData['data']:
             item = QtWidgets.QTreeWidgetItem(self.treeWidgetMachineStatus)
             item.setText(0, con['machine'])
