@@ -3,6 +3,7 @@ from dao.ProjectDirDAO import ProjectDirDAO
 import subprocess
 from model.MachineInfo import MachineInfo
 from utils.Const import Const
+import threading
 
 class MainWindowProcessor():
     def __init__(self):
@@ -25,12 +26,21 @@ class MainWindowProcessor():
         self.conDAO.updateDockerComposeType(machineInfo)
     
     def deploy(self, machineInfo):
+        t = threading.Thread(target = self.job, args=(machineInfo,))
+        t.start()
+        return "background job running"
+    
+    def job(self, machineInfo):
         completedProcess = subprocess.run(['./bin/startContainer.sh', machineInfo.getProjectDir()+'/'+machineInfo.getDockerComposeType(), machineInfo.getMachine()])
         status = self.getStatusMessage(completedProcess.returncode)
-        return status
-    
+        if(self.isSuccess(status)):
+            print("########################################################")
+
+    def isSuccess(self, status):
+        return True if status == Const.SUCCESS else False
+
     def getStatusMessage(self, returnCode):
         if(returnCode==1):
-            return "startContainer.sh failed! Please check terminal"
+            return Const.FAILED
         if(returnCode==0):
             return Const.SUCCESS

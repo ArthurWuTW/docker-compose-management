@@ -28,13 +28,7 @@ class UiMainWindow(Ui_MainWindowBase):
 
     def deploy(self):
         statusMessage = self.processor.deploy(self.currentMachineInfo)
-        if(self.isSuccess(statusMessage)):
-            self.popUpWindow(Const.INFO, statusMessage)
-        else:
-            self.popUpWindow(Const.ERROR, statusMessage)
-    
-    def isSuccess(self, status):
-        return True if status == Const.SUCCESS else False
+        self.popUpWindow(Const.INFO, statusMessage)
     
     def saveSelectedDockerComposeType(self):
         machineInfo = MachineInfo()
