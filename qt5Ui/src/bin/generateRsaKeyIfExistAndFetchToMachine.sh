@@ -11,7 +11,6 @@ if [ ! -f "$RSA_FILE" ];then
 
 fi
 
-
 IP=$1
 Port=$2
 username=$3
