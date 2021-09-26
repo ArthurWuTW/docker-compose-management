@@ -14,6 +14,7 @@ class UiMainWindow(Ui_MainWindowBase):
     def setupUi(self, Dialog):
         super().setupUi(Dialog)
         self.actionCreate_Rsa_Key.triggered.connect(self.showDialogCreateRsaKeyCallback)
+        self.treeWidgetMachineStatus.itemClicked.connect(self.onItemClicked)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
         self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
         self.updateCombobox([''])
@@ -47,3 +48,7 @@ class UiMainWindow(Ui_MainWindowBase):
     def updateCombobox(self, preList):
         self.comboBox.clear()
         self.comboBox.addItems(preList+self.projectDirData['dockerComposeType'])
+
+    def onItemClicked(self, item, column):
+        self.lineEditMachineName.setText(item.text(0))
+        self.comboBox.setCurrentText(item.text(1))
