@@ -28,11 +28,22 @@ class MainWindowProcessor():
     def deploy(self, machineInfo):
         self.updateDeployStatus(machineInfo, Const.EMPTY)
         self.updateDeployStatus(machineInfo, Const.DEPLOY)
-        t = threading.Thread(target = self.job, args=(machineInfo,))
+        t = threading.Thread(target = self.startJob, args=(machineInfo,))
         t.start()
         return "background job running"
     
-    def job(self, machineInfo):
+    def stopContainer(self, machineInfo):
+        self.updateDeployStatus(machineInfo, Const.CLOSING)
+        t = threading.Thread(target = self.closeJob, args=(machineInfo,))
+        t.start()
+        return "background job running"
+    
+    def closeJob(self, machineInfo):
+        completedProcess = subprocess.run(['./bin/stopContainer.sh', machineInfo.getProjectDir()+'/'+machineInfo.getDockerComposeType(), machineInfo.getMachine()])
+        status = self.getStatusMessage(completedProcess.returncode)
+        self.updateDeployStatus(machineInfo, Const.SLEEPING if self.isSuccess(status) else Const.FAILED)
+    
+    def startJob(self, machineInfo):
         completedProcess = subprocess.run(['./bin/startContainer.sh', machineInfo.getProjectDir()+'/'+machineInfo.getDockerComposeType(), machineInfo.getMachine()])
         status = self.getStatusMessage(completedProcess.returncode)
         self.updateDeployStatus(machineInfo, Const.SUCCESS if self.isSuccess(status) else Const.FAILED)
@@ -56,3 +67,4 @@ class MainWindowProcessor():
             out, err = completedProcess.communicate()
             stringArray = out.decode('utf-8').split('\n')
             return stringArray
+    

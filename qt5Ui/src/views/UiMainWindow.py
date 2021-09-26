@@ -21,11 +21,16 @@ class UiMainWindow(Ui_MainWindowBase):
         self.treeWidgetMachineStatus.itemClicked.connect(self.onItemClicked)
         self.pushButtonDeployRefresh.clicked.connect(self.refreshDeployStatus)
         self.pushButtonSave.clicked.connect(self.saveSelectedDockerComposeType)
+        self.pushButtonDeployStop.clicked.connect(self.stopContainer)
         self.pushButtonDeploy.clicked.connect(self.deploy)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
         self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
         self.updateCombobox([''])
         self.updateTreeWidget()
+    
+    def stopContainer(self):
+        statusMessage = self.processor.stopContainer(self.currentMachineInfo)
+        self.popUpWindow(Const.INFO, statusMessage)
     
     def refreshDeployStatus(self):
         self.processor.refreshConnectionData()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>788</width>
+    <width>1089</width>
     <height>713</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>40</x>
       <y>100</y>
-      <width>461</width>
+      <width>751</width>
       <height>192</height>
      </rect>
     </property>
@@ -42,8 +42,8 @@
    <widget class="QToolButton" name="toolButtonProjectDir">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>50</y>
+      <x>940</x>
+      <y>40</y>
       <width>24</width>
       <height>25</height>
      </rect>
@@ -55,9 +55,9 @@
    <widget class="QLineEdit" name="lineEditProjectDir">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>50</y>
-      <width>531</width>
+      <x>70</x>
+      <y>40</y>
+      <width>861</width>
       <height>27</height>
      </rect>
     </property>
@@ -68,8 +68,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>30</y>
+      <x>70</x>
+      <y>20</y>
       <width>321</width>
       <height>17</height>
      </rect>
@@ -83,7 +83,7 @@
      <rect>
       <x>40</x>
       <y>320</y>
-      <width>681</width>
+      <width>971</width>
       <height>192</height>
      </rect>
     </property>
@@ -96,7 +96,7 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>830</x>
       <y>190</y>
       <width>171</width>
       <height>27</height>
@@ -106,7 +106,7 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>830</x>
       <y>170</y>
       <width>161</width>
       <height>17</height>
@@ -119,7 +119,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>830</x>
       <y>110</y>
       <width>161</width>
       <height>17</height>
@@ -132,7 +132,7 @@
    <widget class="QLineEdit" name="lineEditMachineName">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>830</x>
       <y>130</y>
       <width>171</width>
       <height>27</height>
@@ -145,7 +145,7 @@
    <widget class="QPushButton" name="pushButtonSave">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>830</x>
       <y>240</y>
       <width>171</width>
       <height>27</height>
@@ -158,8 +158,8 @@
    <widget class="QPushButton" name="pushButtonDeploy">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>530</y>
+      <x>710</x>
+      <y>540</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -171,8 +171,8 @@
    <widget class="QPushButton" name="pushButtonDeloyAll">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>580</y>
+      <x>710</x>
+      <y>590</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -184,8 +184,8 @@
    <widget class="QPushButton" name="pushButtonRebuildDeploy">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>530</y>
+      <x>330</x>
+      <y>540</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -197,8 +197,8 @@
    <widget class="QPushButton" name="pushButtonDeployStopAll">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>580</y>
+      <x>330</x>
+      <y>590</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -210,8 +210,8 @@
    <widget class="QPushButton" name="pushButtonDeployRefresh">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>530</y>
+      <x>520</x>
+      <y>540</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -220,13 +220,26 @@
      <string>Refresh</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButtonDeployStop">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>590</y>
+      <width>171</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>788</width>
+     <width>1089</width>
      <height>25</height>
     </rect>
    </property>

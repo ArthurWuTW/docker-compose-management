@@ -7,3 +7,5 @@ class Const():
     FAILED = "Failed"
     DEPLOY = "Deploying"
     EMPTY = ""
+    CLOSING = "Closing"
+    SLEEPING = "Sleeping"

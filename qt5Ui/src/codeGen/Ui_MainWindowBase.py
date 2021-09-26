@@ -63,6 +63,9 @@ class Ui_MainWindowBase(object):
         self.pushButtonDeployRefresh = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonDeployRefresh.setGeometry(QtCore.QRect(520, 540, 171, 27))
         self.pushButtonDeployRefresh.setObjectName("pushButtonDeployRefresh")
+        self.pushButtonDeployStop = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButtonDeployStop.setGeometry(QtCore.QRect(520, 590, 171, 27))
+        self.pushButtonDeployStop.setObjectName("pushButtonDeployStop")
         MainWindowBase.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindowBase)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1089, 25))
@@ -98,6 +101,7 @@ class Ui_MainWindowBase(object):
         self.pushButtonRebuildDeploy.setText(_translate("MainWindowBase", "Rebuild and Deploy"))
         self.pushButtonDeployStopAll.setText(_translate("MainWindowBase", "Stop ALL"))
         self.pushButtonDeployRefresh.setText(_translate("MainWindowBase", "Refresh"))
+        self.pushButtonDeployStop.setText(_translate("MainWindowBase", "Stop"))
         self.menuSettings.setTitle(_translate("MainWindowBase", "Settings"))
         self.actionCreate_Rsa_Key.setText(_translate("MainWindowBase", "Create SSH Rsa Key"))
 
