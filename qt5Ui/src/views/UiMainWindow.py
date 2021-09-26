@@ -3,6 +3,7 @@ from views.UiDialogCreateRsaKey import UiDialogCreateRsaKey
 from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.MainWindowProcessor import MainWindowProcessor 
 from model.MachineInfo import MachineInfo
+from utils.Const import Const
 
 class UiMainWindow(Ui_MainWindowBase):
     def __init__(self):
@@ -11,16 +12,29 @@ class UiMainWindow(Ui_MainWindowBase):
         self.processor = MainWindowProcessor()
         self.projectDirData = self.processor.getProjectDirDockerComposeTypesFromDAO()
         self.connectionData = self.processor.getConDataFromDAO()
+        self.currentMachineInfo = MachineInfo()
 
     def setupUi(self, Dialog):
         super().setupUi(Dialog)
+        self.MessageBox = QtWidgets.QMessageBox()
         self.actionCreate_Rsa_Key.triggered.connect(self.showDialogCreateRsaKeyCallback)
         self.treeWidgetMachineStatus.itemClicked.connect(self.onItemClicked)
         self.pushButtonSave.clicked.connect(self.saveSelectedDockerComposeType)
+        self.pushButtonDeploy.clicked.connect(self.deploy)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
         self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
         self.updateCombobox([''])
         self.updateTreeWidget()
+
+    def deploy(self):
+        statusMessage = self.processor.deploy(self.currentMachineInfo)
+        if(self.isSuccess(statusMessage)):
+            self.popUpWindow(Const.INFO, statusMessage)
+        else:
+            self.popUpWindow(Const.ERROR, statusMessage)
+    
+    def isSuccess(self, status):
+        return True if status == Const.SUCCESS else False
     
     def saveSelectedDockerComposeType(self):
         machineInfo = MachineInfo()
@@ -63,3 +77,13 @@ class UiMainWindow(Ui_MainWindowBase):
     def onItemClicked(self, item, column):
         self.lineEditMachineName.setText(item.text(0))
         self.comboBox.setCurrentText(item.text(1))
+
+        self.currentMachineInfo.setMachine(item.text(0))
+        self.currentMachineInfo.setDockerComposeType(item.text(1))
+        self.currentMachineInfo.setProjectDir(self.projectDirData['projectDir'])
+
+    def popUpWindow(self, title, message):
+        self.MessageBox.setWindowTitle(title)
+        self.MessageBox.setText(message)
+        self.MessageBox.exec_()
+
