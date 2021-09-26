@@ -35,7 +35,7 @@
     </column>
     <column>
      <property name="text">
-      <string>SSH status</string>
+      <string>Deployment Status</string>
      </property>
     </column>
    </widget>
@@ -184,7 +184,7 @@
    <widget class="QPushButton" name="pushButtonRebuildDeploy">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>170</x>
       <y>530</y>
       <width>171</width>
       <height>27</height>
@@ -197,7 +197,7 @@
    <widget class="QPushButton" name="pushButtonDeployStopAll">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>170</x>
       <y>580</y>
       <width>171</width>
       <height>27</height>
@@ -205,6 +205,19 @@
     </property>
     <property name="text">
      <string>Stop ALL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonDeployRefresh">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>530</y>
+      <width>171</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
     </property>
    </widget>
   </widget>

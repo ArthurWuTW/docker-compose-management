@@ -20,7 +20,8 @@ class ConnectionDataDAO():
         if sshConfig.getUsername()+'@'+sshConfig.getIP() not in self.data['data']:
             self.data['data'].append({
                 'machine': sshConfig.getUsername()+'@'+sshConfig.getIP(),
-                'dockerComposeType': ''
+                'dockerComposeType': '',
+                'deployStatus': ''
             })
             self.fileUtil.saveFile(self.data)
             self.data = self.fileUtil.getConnectionJson()
@@ -34,6 +35,13 @@ class ConnectionDataDAO():
     def updateDockerComposeType(self, machineInfo):
         connection = next(x for x in self.data['data'] if x['machine'] == machineInfo.getMachine())
         connection['dockerComposeType'] = machineInfo.getDockerComposeType()
+
+        self.fileUtil.saveFile(self.data)
+        self.data = self.fileUtil.getConnectionJson()
+
+    def updateDeployStatus(self, machineInfo):
+        connection = next(x for x in self.data['data'] if x['machine'] == machineInfo.getMachine())
+        connection['deployStatus'] = machineInfo.getDeployStatus()
 
         self.fileUtil.saveFile(self.data)
         self.data = self.fileUtil.getConnectionJson()

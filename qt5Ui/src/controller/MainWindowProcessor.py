@@ -26,6 +26,7 @@ class MainWindowProcessor():
         self.conDAO.updateDockerComposeType(machineInfo)
     
     def deploy(self, machineInfo):
+        self.updateDeployStatus(machineInfo, Const.DEPLOY)
         t = threading.Thread(target = self.job, args=(machineInfo,))
         t.start()
         return "background job running"
@@ -33,9 +34,8 @@ class MainWindowProcessor():
     def job(self, machineInfo):
         completedProcess = subprocess.run(['./bin/startContainer.sh', machineInfo.getProjectDir()+'/'+machineInfo.getDockerComposeType(), machineInfo.getMachine()])
         status = self.getStatusMessage(completedProcess.returncode)
-        if(self.isSuccess(status)):
-            print("########################################################")
-
+        self.updateDeployStatus(machineInfo, Const.SUCCESS if self.isSuccess(status) else Const.FAILED)
+    
     def isSuccess(self, status):
         return True if status == Const.SUCCESS else False
 
@@ -44,3 +44,7 @@ class MainWindowProcessor():
             return Const.FAILED
         if(returnCode==0):
             return Const.SUCCESS
+    
+    def updateDeployStatus(self, machineInfo, status):
+        machineInfo.setDeployStatus(status)
+        self.conDAO.updateDeployStatus(machineInfo)
