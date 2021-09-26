@@ -1,11 +1,13 @@
 from model.SSHConfig import SSHConfig
+import subprocess
 
 class DialogCreateRsaKeyProcessor():
-    def __init__(self):
-        a = 1
     def connectBySshAndGenerateRsaKey(self, sshTarget):
-        print(sshTarget.getPassword())
+        completedProcess = subprocess.run(['./bin/generateRsaKeyIfExistAndFetchToMachine.sh', sshTarget.getIP(), sshTarget.getPort(), sshTarget.getUsername(), sshTarget.getPassword()])
+        return self.getStatusMessage(completedProcess.returncode)
 
-
-
-        return False;
+    def getStatusMessage(self, returnCode):
+        if(returnCode==1):
+            return "generateRsaKeyIfExistAndFetchToMachine.sh failed! Please enter correct arguments"
+        if(returnCode==0):
+            return "Success"

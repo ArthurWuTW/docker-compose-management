@@ -22,10 +22,11 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
         sshTarget.setPassword(self.lineEditPassword.text())
         sshTarget.setPort(self.lineEditPort.text())
 
-        if(self.isSuccess(self.processor.connectBySshAndGenerateRsaKey(sshTarget))):
+        statusMessage = self.processor.connectBySshAndGenerateRsaKey(sshTarget)
+        if(self.isSuccess(statusMessage)):
             Dialog.accept()
         else:
-            self.popUpError("SSH connection failed")
+            self.popUpError(statusMessage)
             
     def isSuccess(self, status):
         if(status=="Success"):
