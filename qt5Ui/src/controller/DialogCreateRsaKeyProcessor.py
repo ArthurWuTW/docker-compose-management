@@ -6,7 +6,6 @@ from utils.Const import Const
 class DialogCreateRsaKeyProcessor():
     def __init__(self):
         self.conDAO = ConnectionDataDAO()
-        self.const = Const()
     def connectBySshAndGenerateRsaKey(self, sshTarget):
         completedProcess = subprocess.run(['./bin/generateRsaKeyIfExistAndFetchToMachine.sh', sshTarget.getIP(), sshTarget.getPort(), sshTarget.getUsername(), sshTarget.getPassword()])
         status = self.getStatusMessage(completedProcess.returncode)
@@ -19,7 +18,7 @@ class DialogCreateRsaKeyProcessor():
         if(returnCode==1):
             return "generateRsaKeyIfExistAndFetchToMachine.sh failed! Please enter correct arguments"
         if(returnCode==0):
-            return self.const.SUCCESS
+            return Const.SUCCESS
     
     def isSuccess(self, status):
-        return True if status == self.const.SUCCESS else False
+        return True if status == Const.SUCCESS else False

@@ -5,10 +5,9 @@ from utils.Const import Const
 
 class ConnectionDataDAO():
     def __init__(self):
-        self.const = Const()
         self.fileUtil = JsonFileUtil()
         self.data = {'data': []}
-        if(os.path.isfile(self.const.CONNECTION_DATA_FILE)):
+        if(os.path.isfile(Const.CONNECTION_DATA_FILE)):
             self.data = self.fileUtil.getConnectionJson()
         else:
             self.saveOrUpdate(self.data)

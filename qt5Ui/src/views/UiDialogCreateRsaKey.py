@@ -9,7 +9,6 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
     def __init__(self):
         super().__init__()
         self.processor = DialogCreateRsaKeyProcessor()
-        self.const = Const()
 
     def setupUi(self, Dialog):
         super().setupUi(Dialog)
@@ -26,17 +25,17 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
 
         statusMessage = self.processor.connectBySshAndGenerateRsaKey(sshTarget)
         if(self.isSuccess(statusMessage)):
-            self.popUpWindow(self.const.INFO, statusMessage)
+            self.popUpWindow(Const.INFO, statusMessage)
             Dialog.accept()
         else:
-            self.popUpWindow(self.const.ERROR, statusMessage)
+            self.popUpWindow(Const.ERROR, statusMessage)
             
     def isSuccess(self, status):
-        if(status=="Success"):
+        if(status == Const.SUCCESS):
             return True
         return False
     
     def popUpWindow(self, title, message):
-        self.MessageBox.setWindowTitle("Error")
+        self.MessageBox.setWindowTitle(title)
         self.MessageBox.setText(message)
         self.MessageBox.exec_()
