@@ -13,11 +13,11 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
 
     def setupUi(self, Dialog):
         super().setupUi(Dialog)
-        self.ButtonCreateRsaKey.clicked.connect(lambda: self.clickButtonCreateRsaKey(Dialog))
+        self.ButtonCreateRsaKey.clicked.connect(lambda: self.clickButtonCreateRsaKeyAndPassKeyToTarget(Dialog))
         self.ButtonExit.clicked.connect(Dialog.reject)
         self.MessageBox = QtWidgets.QMessageBox()
 
-    def clickButtonCreateRsaKey(self, Dialog):
+    def clickButtonCreateRsaKeyAndPassKeyToTarget(self, Dialog):
         sshTarget = SSHConfig()
         sshTarget.setIP(self.lineEditIP.text())
         sshTarget.setUsername(self.lineEditUsername.text())
