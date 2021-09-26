@@ -31,9 +31,7 @@ class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
             self.popUpWindow(Const.ERROR, statusMessage)
             
     def isSuccess(self, status):
-        if(status == Const.SUCCESS):
-            return True
-        return False
+        return True if status == Const.SUCCESS else False
     
     def popUpWindow(self, title, message):
         self.MessageBox.setWindowTitle(title)
