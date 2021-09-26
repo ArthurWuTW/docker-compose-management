@@ -84,11 +84,23 @@ class UiMainWindow(Ui_MainWindowBase):
         self.currentMachineInfo.setMachine(item.text(0))
         self.currentMachineInfo.setDockerComposeType(item.text(1))
         self.currentMachineInfo.setProjectDir(self.projectDirData['projectDir'])
+        
+        self.refreshDockerContainerProcess(self.currentMachineInfo)
 
     def popUpWindow(self, title, message):
         self.MessageBox.setWindowTitle(title)
         self.MessageBox.setText(message)
         self.MessageBox.exec_()
     
+    def refreshDockerContainerProcess(self, machineInfo):
+        self.treeWidgetDockerContainerStatus.clear()
+        stringArray = self.processor.refreshDockerContainerProcess(machineInfo)
+        if self.isNotNone(stringArray):
+            for output in stringArray:
+                item = QtWidgets.QTreeWidgetItem(self.treeWidgetDockerContainerStatus)
+                item.setText(0, output)
+    
+    def isNotNone(self, resultObject):
+        return True if resultObject != None else False
 
 

@@ -49,3 +49,10 @@ class MainWindowProcessor():
     def updateDeployStatus(self, machineInfo, status):
         machineInfo.setDeployStatus(status)
         self.conDAO.updateDeployStatus(machineInfo)
+    
+    def refreshDockerContainerProcess(self, machineInfo):
+        if(self.isSuccess(machineInfo.getDeployStatus())):
+            completedProcess = subprocess.Popen(['./bin/checkContainerStatus.sh', machineInfo.getProjectDir()+'/'+machineInfo.getDockerComposeType(), machineInfo.getMachine()], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out, err = completedProcess.communicate()
+            stringArray = out.decode('utf-8').split('\n')
+            return stringArray
