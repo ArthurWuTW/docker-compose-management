@@ -8,15 +8,18 @@ class UiMainWindow(Ui_MainWindowBase):
         super().__init__()
         self.qDialogCreateRsaKey = None
         self.processor = MainWindowProcessor()
-        self.projectDir = None
+        self.projectDirData = self.processor.getProjectDirDockerComposeTypesFromDAO()
+
     def setupUi(self, Dialog):
         super().setupUi(Dialog)
         self.actionCreate_Rsa_Key.triggered.connect(self.showDialogCreateRsaKeyCallback)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
+        self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
 
     def openFileDialog(self):
         self.projectDir = str(QtWidgets.QFileDialog.getExistingDirectory())
         self.lineEditProjectDir.setText(self.projectDir)
+        self.processor.saveProjectDirAndDockerComposeTypes(self.projectDir)
 
     def showDialogCreateRsaKeyCallback(self):
         self.qDialogCreateRsaKey = QtWidgets.QDialog()
