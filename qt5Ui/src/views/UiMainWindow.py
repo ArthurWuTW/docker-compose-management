@@ -15,11 +15,15 @@ class UiMainWindow(Ui_MainWindowBase):
         self.actionCreate_Rsa_Key.triggered.connect(self.showDialogCreateRsaKeyCallback)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
         self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
+        self.updateCombobox([''])
+        
 
     def openFileDialog(self):
         self.projectDir = str(QtWidgets.QFileDialog.getExistingDirectory())
         self.lineEditProjectDir.setText(self.projectDir)
         self.processor.saveProjectDirAndDockerComposeTypes(self.projectDir)
+        self.projectDirData = self.processor.getProjectDirDockerComposeTypesFromDAO()
+        self.updateCombobox([''])
 
     def showDialogCreateRsaKeyCallback(self):
         self.qDialogCreateRsaKey = QtWidgets.QDialog()
@@ -32,3 +36,7 @@ class UiMainWindow(Ui_MainWindowBase):
     
     def isAccept(self, result):
         return True if result == 1 else False
+
+    def updateCombobox(self, preList):
+        self.comboBox.clear()
+        self.comboBox.addItems(preList+self.projectDirData['dockerComposeType'])
