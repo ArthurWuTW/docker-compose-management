@@ -8,11 +8,11 @@ class ConnectionDataDAO():
         self.const = Const()
         self.fileUtil = JsonFileUtil()
         self.data = {'data': []}
-        if(not os.path.isfile(self.const.CONNECTION_DATA_FILE)):
-            self.saveOrUpdate(self.data)
-        else:
+        if(os.path.isfile(self.const.CONNECTION_DATA_FILE)):
             self.data = self.fileUtil.getConnectionJson()
-    
+        else:
+            self.saveOrUpdate(self.data)
+
     def saveOrUpdate(self, connectionData):
         self.fileUtil.saveFile(connectionData)
 
