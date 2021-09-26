@@ -31,6 +31,6 @@ class MainWindowProcessor():
     
     def getStatusMessage(self, returnCode):
         if(returnCode==1):
-            return "startContainer.sh failed! Please enter correct arguments"
+            return "startContainer.sh failed! Please check terminal"
         if(returnCode==0):
             return Const.SUCCESS
