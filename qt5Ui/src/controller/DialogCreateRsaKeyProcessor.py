@@ -11,7 +11,6 @@ class DialogCreateRsaKeyProcessor():
         completedProcess = subprocess.run(['./bin/generateRsaKeyIfExistAndFetchToMachine.sh', sshTarget.getIP(), sshTarget.getPort(), sshTarget.getUsername(), sshTarget.getPassword()])
         status = self.getStatusMessage(completedProcess.returncode)
         if(self.isSuccess(status)):
-            print(self.const.SUCCESS+"sadasdf")
             self.conDAO.addConnectionBySshConfig(sshTarget)
 
         return status
