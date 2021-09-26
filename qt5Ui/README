@@ -1,3 +1,3 @@
 QA
 
-1. administratively prohibited: open failed -> /etc/ssh/ssh_config -> AllowTcpForwarding yes
+1. administratively prohibited: open failed -> /etc/ssh/ssh_config -> AllowTcpForwarding yes and MaxSessions=20
