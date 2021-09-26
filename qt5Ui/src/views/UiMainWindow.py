@@ -19,11 +19,17 @@ class UiMainWindow(Ui_MainWindowBase):
         self.MessageBox = QtWidgets.QMessageBox()
         self.actionCreate_Rsa_Key.triggered.connect(self.showDialogCreateRsaKeyCallback)
         self.treeWidgetMachineStatus.itemClicked.connect(self.onItemClicked)
+        self.pushButtonDeployRefresh.clicked.connect(self.refreshDeployStatus)
         self.pushButtonSave.clicked.connect(self.saveSelectedDockerComposeType)
         self.pushButtonDeploy.clicked.connect(self.deploy)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
         self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
         self.updateCombobox([''])
+        self.updateTreeWidget()
+    
+    def refreshDeployStatus(self):
+        self.processor.refreshConnectionData()
+        self.connectionData = self.processor.getConDataFromDAO()
         self.updateTreeWidget()
 
     def deploy(self):
@@ -44,6 +50,7 @@ class UiMainWindow(Ui_MainWindowBase):
             item = QtWidgets.QTreeWidgetItem(self.treeWidgetMachineStatus)
             item.setText(0, con['machine'])
             item.setText(1, con['dockerComposeType'])
+            item.setText(2, con['deployStatus'])
 
     def openFileDialog(self):
         self.projectDir = str(QtWidgets.QFileDialog.getExistingDirectory())
@@ -59,6 +66,8 @@ class UiMainWindow(Ui_MainWindowBase):
         result = self.qDialogCreateRsaKey.exec_()
         if(self.isAccept(result)):
             self.processor.refreshConnectionData()
+            self.connectionData = self.processor.getConDataFromDAO()
+            self.updateTreeWidget()
             print(self.processor.getConDataFromDAO())
     
     def isAccept(self, result):
@@ -80,4 +89,6 @@ class UiMainWindow(Ui_MainWindowBase):
         self.MessageBox.setWindowTitle(title)
         self.MessageBox.setText(message)
         self.MessageBox.exec_()
+    
+
 

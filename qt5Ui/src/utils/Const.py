@@ -6,3 +6,4 @@ class Const():
     PROJECT_DIR_FILE = "tmp/project_dir.json"
     FAILED = "Failed"
     DEPLOY = "Deploying"
+    EMPTY = ""

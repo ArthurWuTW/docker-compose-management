@@ -26,6 +26,7 @@ class MainWindowProcessor():
         self.conDAO.updateDockerComposeType(machineInfo)
     
     def deploy(self, machineInfo):
+        self.updateDeployStatus(machineInfo, Const.EMPTY)
         self.updateDeployStatus(machineInfo, Const.DEPLOY)
         t = threading.Thread(target = self.job, args=(machineInfo,))
         t.start()
