@@ -21,3 +21,9 @@ class ConnectionDataDAO():
             self.data['data'].append(sshConfig.getUsername()+'@'+sshConfig.getIP())
             self.fileUtil.saveFile(self.data)
             self.data = self.fileUtil.getConnectionJson()
+    
+    def getData(self):
+        return self.data
+
+    def refresh(self):
+        self.data = self.fileUtil.getConnectionJson()

@@ -1,3 +1,11 @@
+from dao.ConnectionDataDAO import ConnectionDataDAO
+
 class MainWindowProcessor():
     def __init__(self):
-        a = 1
+        self.conDAO = ConnectionDataDAO()
+
+    def refreshConnectionData(self):
+        self.conDAO.refresh()
+    
+    def getConDataFromDAO(self):
+        return self.conDAO.getData()
