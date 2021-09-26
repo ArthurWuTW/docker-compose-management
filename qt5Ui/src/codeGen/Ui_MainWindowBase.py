@@ -24,6 +24,7 @@ class Ui_MainWindowBase(object):
         self.toolButtonProjectDir.setObjectName("toolButtonProjectDir")
         self.lineEditProjectDir = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEditProjectDir.setGeometry(QtCore.QRect(90, 50, 531, 27))
+        self.lineEditProjectDir.setReadOnly(True)
         self.lineEditProjectDir.setObjectName("lineEditProjectDir")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(90, 30, 321, 17))
