@@ -17,7 +17,10 @@ class ConnectionDataDAO():
 
     def addConnectionBySshConfig(self, sshConfig):
         if sshConfig.getUsername()+'@'+sshConfig.getIP() not in self.data['data']:
-            self.data['data'].append(sshConfig.getUsername()+'@'+sshConfig.getIP())
+            self.data['data'].append({
+                'machine': sshConfig.getUsername()+'@'+sshConfig.getIP(),
+                'dockerComposeType': ''
+            })
             self.fileUtil.saveFile(self.data)
             self.data = self.fileUtil.getConnectionJson()
     

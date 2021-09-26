@@ -9,6 +9,7 @@ class UiMainWindow(Ui_MainWindowBase):
         self.qDialogCreateRsaKey = None
         self.processor = MainWindowProcessor()
         self.projectDirData = self.processor.getProjectDirDockerComposeTypesFromDAO()
+        self.connectionData = self.processor.getConDataFromDAO()
 
     def setupUi(self, Dialog):
         super().setupUi(Dialog)
@@ -16,7 +17,13 @@ class UiMainWindow(Ui_MainWindowBase):
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
         self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
         self.updateCombobox([''])
-        
+        self.updateTreeWidget()
+
+    def updateTreeWidget(self):
+        for con in self.connectionData['data']:
+            item = QtWidgets.QTreeWidgetItem(self.treeWidgetMachineStatus)
+            item.setText(0, con['machine'])
+            item.setText(1, con['dockerComposeType'])
 
     def openFileDialog(self):
         self.projectDir = str(QtWidgets.QFileDialog.getExistingDirectory())
