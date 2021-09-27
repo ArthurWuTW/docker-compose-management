@@ -36,6 +36,7 @@ class UiMainWindow(Ui_MainWindowBase):
         self.processor.refreshConnectionData()
         self.connectionData = self.processor.getConDataFromDAO()
         self.updateTreeWidget()
+        self.treeWidgetDockerContainerStatus.clear()
 
     def deploy(self):
         statusMessage = self.processor.deploy(self.currentMachineInfo)
@@ -88,6 +89,7 @@ class UiMainWindow(Ui_MainWindowBase):
 
         self.currentMachineInfo.setMachine(item.text(0))
         self.currentMachineInfo.setDockerComposeType(item.text(1))
+        self.currentMachineInfo.setDeployStatus(item.text(2))
         self.currentMachineInfo.setProjectDir(self.projectDirData['projectDir'])
         
         self.refreshDockerContainerProcess(self.currentMachineInfo)

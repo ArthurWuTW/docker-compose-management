@@ -63,6 +63,7 @@ class MainWindowProcessor():
         self.conDAO.updateDeployStatus(machineInfo)
     
     def refreshDockerContainerProcess(self, machineInfo):
+        print(machineInfo.getDeployStatus())
         if(self.isSuccess(machineInfo.getDeployStatus())):
             completedProcess = subprocess.Popen(['./bin/checkContainerStatus.sh', machineInfo.getProjectDir()+'/'+machineInfo.getDockerComposeType(), machineInfo.getMachine()], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = completedProcess.communicate()
