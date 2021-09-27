@@ -274,7 +274,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Login Username</string>
+     <string>Container Login Username</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditUserName">

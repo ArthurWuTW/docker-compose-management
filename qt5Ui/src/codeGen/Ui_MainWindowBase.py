@@ -117,7 +117,7 @@ class Ui_MainWindowBase(object):
         self.pushButtonDeployRefresh.setText(_translate("MainWindowBase", "Refresh"))
         self.pushButtonDeployStop.setText(_translate("MainWindowBase", "Stop"))
         self.pushButtonEnterContainer.setText(_translate("MainWindowBase", "Enter Container"))
-        self.label_4.setText(_translate("MainWindowBase", "Login Username"))
+        self.label_4.setText(_translate("MainWindowBase", "Container Login Username"))
         self.menuSettings.setTitle(_translate("MainWindowBase", "Settings"))
         self.actionCreate_Rsa_Key.setText(_translate("MainWindowBase", "Create SSH Rsa Key"))
 
