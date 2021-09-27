@@ -1,1 +1,2 @@
-xterm -hold -e ls &
+#!/bin/bash
+xterm -hold -e $1 &

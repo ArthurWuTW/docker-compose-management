@@ -13,24 +13,34 @@ class UiMainWindow(Ui_MainWindowBase):
         self.projectDirData = self.processor.getProjectDirDockerComposeTypesFromDAO()
         self.connectionData = self.processor.getConDataFromDAO()
         self.currentMachineInfo = MachineInfo()
+        self.containerName = None
 
     def setupUi(self, Dialog):
         super().setupUi(Dialog)
         self.MessageBox = QtWidgets.QMessageBox()
         self.actionCreate_Rsa_Key.triggered.connect(self.showDialogCreateRsaKeyCallback)
         self.treeWidgetMachineStatus.itemClicked.connect(self.onItemClicked)
+        self.treeWidgetDockerContainerStatus.itemClicked.connect(self.onContainerClicked)
         self.pushButtonDeployRefresh.clicked.connect(self.refreshDeployStatus)
         self.pushButtonSave.clicked.connect(self.saveSelectedDockerComposeType)
+        self.pushButtonEnterContainer.clicked.connect(self.enterContainer)
         self.pushButtonDeployStop.clicked.connect(self.stopContainer)
         self.pushButtonDeploy.clicked.connect(self.deploy)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
         self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
         self.updateCombobox([''])
         self.updateTreeWidget()
+
+    def enterContainer(self):
+        connectionConfig = None
     
+    def onContainerClicked(self, item, column):
+        self.containerName = item.text(0)
+
     def stopContainer(self):
         statusMessage = self.processor.stopContainer(self.currentMachineInfo)
         self.popUpWindow(Const.INFO, statusMessage)
+        self.refreshDeployStatus()
     
     def refreshDeployStatus(self):
         self.processor.refreshConnectionData()
@@ -41,6 +51,7 @@ class UiMainWindow(Ui_MainWindowBase):
     def deploy(self):
         statusMessage = self.processor.deploy(self.currentMachineInfo)
         self.popUpWindow(Const.INFO, statusMessage)
+        self.refreshDeployStatus()
     
     def saveSelectedDockerComposeType(self):
         machineInfo = MachineInfo()
@@ -116,5 +127,8 @@ class UiMainWindow(Ui_MainWindowBase):
     
     def isMatchTreeWidgetColumnSize(self, arr, size):
         return True if len(arr) >= size else False
+    
+    def isNotEmpty(self, text):
+        return True if text != "" else False
 
 

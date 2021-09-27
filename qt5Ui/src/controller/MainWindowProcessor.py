@@ -39,6 +39,13 @@ class MainWindowProcessor():
         t.start()
         return "background job running"
     
+    def enterJob(self, containerName):
+        _ = subprocess.run(['./bin/openAnotherTerminalAndRun.sh', containerName])
+    
+    def enterContainer(self, containerName):
+        t = threading.Thread(target = self.enterJob, args=(containerName,))
+        t.start()
+
     def closeJob(self, machineInfo):
         completedProcess = subprocess.run(['./bin/stopContainer.sh', machineInfo.getProjectDir()+'/'+machineInfo.getDockerComposeType(), machineInfo.getMachine()])
         status = self.getStatusMessage(completedProcess.returncode)

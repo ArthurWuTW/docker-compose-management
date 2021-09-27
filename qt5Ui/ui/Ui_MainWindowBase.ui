@@ -176,8 +176,8 @@
    <widget class="QPushButton" name="pushButtonDeploy">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>540</y>
+      <x>860</x>
+      <y>550</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -189,8 +189,8 @@
    <widget class="QPushButton" name="pushButtonDeloyAll">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>590</y>
+      <x>860</x>
+      <y>600</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -202,8 +202,8 @@
    <widget class="QPushButton" name="pushButtonRebuildDeploy">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>540</y>
+      <x>480</x>
+      <y>550</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -215,8 +215,8 @@
    <widget class="QPushButton" name="pushButtonDeployStopAll">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>590</y>
+      <x>480</x>
+      <y>600</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -228,8 +228,8 @@
    <widget class="QPushButton" name="pushButtonDeployRefresh">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>540</y>
+      <x>670</x>
+      <y>550</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -241,8 +241,8 @@
    <widget class="QPushButton" name="pushButtonDeployStop">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>590</y>
+      <x>670</x>
+      <y>600</y>
       <width>171</width>
       <height>27</height>
      </rect>
@@ -254,14 +254,40 @@
    <widget class="QPushButton" name="pushButtonEnterContainer">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>540</y>
+      <x>50</x>
+      <y>600</y>
       <width>171</width>
       <height>27</height>
      </rect>
     </property>
     <property name="text">
      <string>Enter Container</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>530</y>
+      <width>321</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Login Username</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditUserName">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>550</y>
+      <width>171</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
