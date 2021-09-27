@@ -52,4 +52,4 @@ docker exec \
     --tty \
     --user $CONTAINER_USER \
     ${arr[ind]} \
-    enter-container-shell
+    bash -c "cd /home && /bin/bash -l"
