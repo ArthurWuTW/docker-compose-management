@@ -87,9 +87,27 @@
       <height>192</height>
      </rect>
     </property>
+    <attribute name="headerStretchLastSection">
+     <bool>true</bool>
+    </attribute>
     <column>
      <property name="text">
-      <string>Docker Container Status</string>
+      <string>Container Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Init Command</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Status</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Port Forwarding</string>
      </property>
     </column>
    </widget>

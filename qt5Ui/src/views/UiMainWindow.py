@@ -99,13 +99,20 @@ class UiMainWindow(Ui_MainWindowBase):
     
     def refreshDockerContainerProcess(self, machineInfo):
         self.treeWidgetDockerContainerStatus.clear()
-        stringArray = self.processor.refreshDockerContainerProcess(machineInfo)
-        if self.isNotNone(stringArray):
-            for output in stringArray:
-                item = QtWidgets.QTreeWidgetItem(self.treeWidgetDockerContainerStatus)
-                item.setText(0, output)
+        stringArrayOfArray = self.processor.refreshDockerContainerProcess(machineInfo)
+        if self.isNotNone(stringArrayOfArray):
+            for out in stringArrayOfArray:
+                if self.isMatchTreeWidgetColumnSize(out, 4):
+                    item = QtWidgets.QTreeWidgetItem(self.treeWidgetDockerContainerStatus)
+                    item.setText(0, out[0])
+                    item.setText(1, out[1])
+                    item.setText(2, out[2])
+                    item.setText(3, out[3])
     
     def isNotNone(self, resultObject):
         return True if resultObject != None else False
+    
+    def isMatchTreeWidgetColumnSize(self, arr, size):
+        return True if len(arr) >= size else False
 
 

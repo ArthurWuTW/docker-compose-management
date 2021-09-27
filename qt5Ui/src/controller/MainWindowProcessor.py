@@ -4,6 +4,7 @@ import subprocess
 from model.MachineInfo import MachineInfo
 from utils.Const import Const
 import threading
+import re
 
 class MainWindowProcessor():
     def __init__(self):
@@ -65,6 +66,9 @@ class MainWindowProcessor():
         if(self.isSuccess(machineInfo.getDeployStatus())):
             completedProcess = subprocess.Popen(['./bin/checkContainerStatus.sh', machineInfo.getProjectDir()+'/'+machineInfo.getDockerComposeType(), machineInfo.getMachine()], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = completedProcess.communicate()
-            stringArray = out.decode('utf-8').split('\n')
+            outArray = out.decode('utf-8').split('\n')
+            stringArray = []
+            for row in outArray:
+                stringArray.append(re.split('\s\s+',row))
             return stringArray
     
