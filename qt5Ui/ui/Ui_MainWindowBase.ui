@@ -186,7 +186,7 @@
      <string>Deploy</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButtonDeloyAll">
+   <widget class="QPushButton" name="pushButtonRebuildDeploy">
     <property name="geometry">
      <rect>
       <x>860</x>
@@ -196,33 +196,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Deploy ALL</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonRebuildDeploy">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>550</y>
-      <width>171</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
      <string>Rebuild and Deploy</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonDeployStopAll">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>600</y>
-      <width>171</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Stop ALL</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonDeployRefresh">

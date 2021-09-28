@@ -9,3 +9,8 @@ class Const():
     EMPTY = ""
     CLOSING = "Closing"
     SLEEPING = "Sleeping"
+    PROJECT_DIR='projectDir'
+    DATA='data'
+    MACHINE='machine'
+    DOCKER_COMPOSE_TYPE='dockerComposeType'
+    DEPLOY_STATUS='deployStatus'

@@ -28,7 +28,7 @@ class UiMainWindow(Ui_MainWindowBase):
         self.pushButtonDeployStop.clicked.connect(self.stopContainer)
         self.pushButtonDeploy.clicked.connect(self.deploy)
         self.toolButtonProjectDir.clicked.connect(self.openFileDialog)
-        self.lineEditProjectDir.setText(self.projectDirData['projectDir'])
+        self.lineEditProjectDir.setText(self.projectDirData[Const.PROJECT_DIR])
         self.updateCombobox([''])
         self.updateTreeWidget()
 
@@ -68,11 +68,11 @@ class UiMainWindow(Ui_MainWindowBase):
 
     def updateTreeWidget(self):
         self.treeWidgetMachineStatus.clear()
-        for con in self.connectionData['data']:
+        for con in self.connectionData[Const.DATA]:
             item = QtWidgets.QTreeWidgetItem(self.treeWidgetMachineStatus)
-            item.setText(0, con['machine'])
-            item.setText(1, con['dockerComposeType'])
-            item.setText(2, con['deployStatus'])
+            item.setText(0, con[Const.MACHINE])
+            item.setText(1, con[Const.DOCKER_COMPOSE_TYPE])
+            item.setText(2, con[Const.DEPLOY_STATUS])
 
     def openFileDialog(self):
         self.projectDir = str(QtWidgets.QFileDialog.getExistingDirectory())
@@ -97,7 +97,7 @@ class UiMainWindow(Ui_MainWindowBase):
 
     def updateCombobox(self, preList):
         self.comboBox.clear()
-        self.comboBox.addItems(preList+self.projectDirData['dockerComposeType'])
+        self.comboBox.addItems(preList+self.projectDirData[Const.DOCKER_COMPOSE_TYPE])
 
     def onItemClicked(self, item, column):
         self.lineEditMachineName.setText(item.text(0))
@@ -106,7 +106,7 @@ class UiMainWindow(Ui_MainWindowBase):
         self.currentMachineInfo.setMachine(item.text(0))
         self.currentMachineInfo.setDockerComposeType(item.text(1))
         self.currentMachineInfo.setDeployStatus(item.text(2))
-        self.currentMachineInfo.setProjectDir(self.projectDirData['projectDir'])
+        self.currentMachineInfo.setProjectDir(self.projectDirData[Const.PROJECT_DIR])
         
         self.refreshDockerContainerProcess(self.currentMachineInfo)
 
@@ -134,6 +134,6 @@ class UiMainWindow(Ui_MainWindowBase):
         return True if len(arr) >= size else False
     
     def isNotEmpty(self, text):
-        return True if text != "" else False
+        return True if text != Const.EMPTY else False
 
 
