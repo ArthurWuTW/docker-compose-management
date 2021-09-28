@@ -1,2 +1,6 @@
 #!/bin/bash
-xterm -hold -e ssh -t arthur@10.1.1.16 'docker exec --env TERM=xterm-256color --interactive --tty --user user project-postgres-db-standby bash -c "cd /home && /bin/bash -l" && /bin/bash'
+
+MACHINE=$1
+LOGIN_USER=$2
+CONTAINER=$3
+xterm -hold -e ssh -t $MACHINE 'docker exec --env TERM=xterm-256color --interactive --tty --user '$LOGIN_USER' '$CONTAINER' bash -c "cd /home && /bin/bash -l" && /bin/bash'

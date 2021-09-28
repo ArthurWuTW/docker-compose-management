@@ -75,7 +75,7 @@ class Ui_MainWindowBase(object):
         self.label_4.setObjectName("label_4")
         self.lineEditUserName = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEditUserName.setGeometry(QtCore.QRect(50, 550, 171, 27))
-        self.lineEditUserName.setReadOnly(True)
+        self.lineEditUserName.setReadOnly(False)
         self.lineEditUserName.setObjectName("lineEditUserName")
         MainWindowBase.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindowBase)

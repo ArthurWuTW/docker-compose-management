@@ -2,6 +2,7 @@ from dao.ConnectionDataDAO import ConnectionDataDAO
 from dao.ProjectDirDAO import ProjectDirDAO
 import subprocess
 from model.MachineInfo import MachineInfo
+from model.EnterShellConfig import EnterShellConfig
 from utils.Const import Const
 import threading
 import re
@@ -39,11 +40,11 @@ class MainWindowProcessor():
         t.start()
         return "background job running"
     
-    def enterJob(self, containerName):
-        _ = subprocess.run(['./bin/openAnotherTerminalAndRun.sh', containerName])
+    def enterJob(self, enterShellConfig):
+        _ = subprocess.run(['./bin/openAnotherTerminalAndRun.sh', enterShellConfig.getMachine(), enterShellConfig.getLoginUser(), enterShellConfig.getContainer()])
     
-    def enterContainer(self, containerName):
-        t = threading.Thread(target = self.enterJob, args=(containerName,))
+    def enterContainer(self, enterShellConfig):
+        t = threading.Thread(target = self.enterJob, args=(enterShellConfig,))
         t.start()
 
     def closeJob(self, machineInfo):

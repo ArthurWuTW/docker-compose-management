@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.MainWindowProcessor import MainWindowProcessor 
 from model.MachineInfo import MachineInfo
 from utils.Const import Const
+from model.EnterShellConfig import EnterShellConfig
 
 class UiMainWindow(Ui_MainWindowBase):
     def __init__(self):
@@ -32,7 +33,11 @@ class UiMainWindow(Ui_MainWindowBase):
         self.updateTreeWidget()
 
     def enterContainer(self):
-        connectionConfig = None
+        enterShellConfig = EnterShellConfig()
+        enterShellConfig.setMachine(self.lineEditMachineName.text())
+        enterShellConfig.setContainer(self.containerName)
+        enterShellConfig.setLoginUser(self.lineEditUserName.text())
+        self.processor.enterContainer(enterShellConfig)
     
     def onContainerClicked(self, item, column):
         self.containerName = item.text(0)
