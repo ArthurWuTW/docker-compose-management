@@ -32,13 +32,13 @@ class MainWindowProcessor():
         self.updateDeployStatus(machineInfo, Const.DEPLOY)
         t = threading.Thread(target = self.startJob, args=(machineInfo,))
         t.start()
-        return "background job running"
+        return Const.BACKGROUND_JOB_RUNNING
     
     def stopContainer(self, machineInfo):
         self.updateDeployStatus(machineInfo, Const.CLOSING)
         t = threading.Thread(target = self.closeJob, args=(machineInfo,))
         t.start()
-        return "background job running"
+        return Const.BACKGROUND_JOB_RUNNING
     
     def enterJob(self, enterShellConfig):
         _ = subprocess.run(['./bin/openAnotherTerminalAndRun.sh', enterShellConfig.getMachine(), enterShellConfig.getLoginUser(), enterShellConfig.getContainer()])
@@ -78,6 +78,6 @@ class MainWindowProcessor():
             outArray = out.decode('utf-8').split('\n')
             stringArray = []
             for row in outArray:
-                stringArray.append(re.split('\s\s+',row))
+                stringArray.append(re.split(Const.TWO_SPACE_OR_MORE,row))
             return stringArray
     

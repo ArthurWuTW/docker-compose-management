@@ -12,7 +12,6 @@ class UiMainWindow(Ui_MainWindowBase):
         self.qDialogCreateRsaKey = None
         self.processor = MainWindowProcessor()
         self.projectDirData = self.processor.getProjectDirDockerComposeTypesFromDAO()
-        self.connectionData = self.processor.getConDataFromDAO()
         self.currentMachineInfo = MachineInfo()
         self.containerName = None
 
@@ -49,7 +48,6 @@ class UiMainWindow(Ui_MainWindowBase):
     
     def refreshDeployStatus(self):
         self.processor.refreshConnectionData()
-        self.connectionData = self.processor.getConDataFromDAO()
         self.updateTreeWidget()
         self.treeWidgetDockerContainerStatus.clear()
 
@@ -63,12 +61,12 @@ class UiMainWindow(Ui_MainWindowBase):
         machineInfo.setMachine(self.lineEditMachineName.text())
         machineInfo.setDockerComposeType(self.comboBox.currentText())
         self.processor.updateDockerComposeType(machineInfo)
-        self.connectionData = self.processor.getConDataFromDAO()
+        self.processor.refreshConnectionData()
         self.updateTreeWidget()
 
     def updateTreeWidget(self):
         self.treeWidgetMachineStatus.clear()
-        for con in self.connectionData[Const.DATA]:
+        for con in self.processor.getConDataFromDAO()[Const.DATA]:
             item = QtWidgets.QTreeWidgetItem(self.treeWidgetMachineStatus)
             item.setText(0, con[Const.MACHINE])
             item.setText(1, con[Const.DOCKER_COMPOSE_TYPE])
@@ -88,7 +86,6 @@ class UiMainWindow(Ui_MainWindowBase):
         result = self.qDialogCreateRsaKey.exec_()
         if(self.isAccept(result)):
             self.processor.refreshConnectionData()
-            self.connectionData = self.processor.getConDataFromDAO()
             self.updateTreeWidget()
             print(self.processor.getConDataFromDAO())
     
