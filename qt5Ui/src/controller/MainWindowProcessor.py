@@ -80,4 +80,9 @@ class MainWindowProcessor():
             for row in outArray:
                 stringArray.append(re.split(Const.TWO_SPACE_OR_MORE,row))
             return stringArray
+        
+    def checkConnection(self, machineInfo):
+        completedProcess = subprocess.run(['./bin/checkConnection.sh', machineInfo.getMachine()])
+        status = self.getStatusMessage(completedProcess.returncode)
+        self.updateDeployStatus(machineInfo, Const.SUCCESS if self.isSuccess(status) else Const.LOST_CONNECTION)
     

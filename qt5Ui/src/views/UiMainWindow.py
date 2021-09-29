@@ -47,6 +47,7 @@ class UiMainWindow(Ui_MainWindowBase):
         self.refreshDeployStatus()
     
     def refreshDeployStatus(self):
+        self.processor.checkConnection(self.currentMachineInfo)
         self.processor.refreshConnectionData()
         self.updateTreeWidget()
         self.treeWidgetDockerContainerStatus.clear()
