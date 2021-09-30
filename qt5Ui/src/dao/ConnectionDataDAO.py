@@ -7,7 +7,7 @@ from utils.Const import Const
 class ConnectionDataDAO():
     def __init__(self):
         self.fileUtil = JsonFileUtil()
-        self.data = {'data': []}
+        self.data = {Const.DATA: []}
         if(os.path.isfile(Const.CONNECTION_DATA_FILE)):
             self.data = self.fileUtil.getConnectionJson()
         else:
@@ -17,11 +17,11 @@ class ConnectionDataDAO():
         self.fileUtil.saveFile(connectionData)
 
     def addConnectionBySshConfig(self, sshConfig):
-        if sshConfig.getUsername()+'@'+sshConfig.getIP() not in self.data['data']:
-            self.data['data'].append({
-                'machine': sshConfig.getUsername()+'@'+sshConfig.getIP(),
-                'dockerComposeType': '',
-                'deployStatus': ''
+        if sshConfig.getUsername()+'@'+sshConfig.getIP() not in self.data[Const.DATA]:
+            self.data[Const.DATA].append({
+                Const.MACHINE: sshConfig.getUsername()+'@'+sshConfig.getIP(),
+                Const.DOCKER_COMPOSE_TYPE: '',
+                Const.DEPLOY_STATUS: ''
             })
             self.fileUtil.saveFile(self.data)
             self.data = self.fileUtil.getConnectionJson()
@@ -33,15 +33,15 @@ class ConnectionDataDAO():
         self.data = self.fileUtil.getConnectionJson()
 
     def updateDockerComposeType(self, machineInfo):
-        connection = next(x for x in self.data['data'] if x['machine'] == machineInfo.getMachine())
-        connection['dockerComposeType'] = machineInfo.getDockerComposeType()
+        connection = next(x for x in self.data[Const.DATA] if x[Const.MACHINE] == machineInfo.getMachine())
+        connection[Const.DOCKER_COMPOSE_TYPE] = machineInfo.getDockerComposeType()
 
         self.fileUtil.saveFile(self.data)
         self.data = self.fileUtil.getConnectionJson()
 
     def updateDeployStatus(self, machineInfo):
-        connection = next(x for x in self.data['data'] if x['machine'] == machineInfo.getMachine())
-        connection['deployStatus'] = machineInfo.getDeployStatus()
+        connection = next(x for x in self.data[Const.DATA] if x[Const.MACHINE] == machineInfo.getMachine())
+        connection[Const.DEPLOY_STATUS] = machineInfo.getDeployStatus()
 
         self.fileUtil.saveFile(self.data)
         self.data = self.fileUtil.getConnectionJson()
