@@ -84,5 +84,5 @@ class MainWindowProcessor():
     def checkConnection(self, machineInfo):
         completedProcess = subprocess.run(['./bin/checkConnection.sh', machineInfo.getMachine()])
         status = self.getStatusMessage(completedProcess.returncode)
-        self.updateDeployStatus(machineInfo, Const.SUCCESS if self.isSuccess(status) else Const.LOST_CONNECTION)
+        self.updateDeployStatus(machineInfo, machineInfo.getDeployStatus() if self.isSuccess(status) else Const.LOST_CONNECTION)
     
