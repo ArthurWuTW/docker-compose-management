@@ -15,7 +15,7 @@ services:
             - "${HOST_PORT_STANDBY_DB}:5432"
         volumes:
             - /tmp/.X11-unix:/tmp/.X11-unix
-            - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
+            - ${HOME_DIR}/Desktop:/home/${CONTAINER_USER}/Desktop
             #- ${DB_TMP_STANDBY_DIR}/postgresql:/var/lib/postgresql
         environment:
             - DISPLAY=${DISPLAY}
