@@ -57,4 +57,4 @@ services:
             - ${HOME}/Desktop:/home/${CONTAINER_USER}/Desktop
         environment:
             - DISPLAY=${DISPLAY}
-        command: bash -c "/home/${CONTAINER_USER}/tomcat/apache-tomcat-9.0.52/bin/startup.sh && infinite-loop"
+        command: bash -c "/home/${CONTAINER_USER}/tomcat/apache-tomcat-9.0.54/bin/startup.sh && infinite-loop"
