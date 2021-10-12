@@ -19,4 +19,4 @@ services:
             - ${DB_TMP_STANDBY_DIR}/postgresql:/var/lib/postgresql
         environment:
             - DISPLAY=${DISPLAY}
-        command: bash -c "infinite-loop"
+        command: bash -c "sudo chown -R postgres:postgres /var/lib/postgresql && sudo service postgresql start && infinite-loop"
