@@ -16,7 +16,7 @@ services:
         volumes:
             - /tmp/.X11-unix:/tmp/.X11-unix
             - ${HOME_DIR}/Desktop:/home/${CONTAINER_USER}/Desktop
-            #- ${DB_TMP_STANDBY_DIR}/postgresql:/var/lib/postgresql
+            - ${DB_TMP_STANDBY_DIR}/postgresql:/var/lib/postgresql
         environment:
             - DISPLAY=${DISPLAY}
-        command: bash -c "sudo chown -R postgres:postgres /var/lib/postgresql && sudo service postgresql start && infinite-loop"
+        command: bash -c "infinite-loop"

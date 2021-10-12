@@ -18,7 +18,7 @@ services:
             - ${DB_TMP_DIR}/postgresql:/var/lib/postgresql
         environment:
             - DISPLAY=${DISPLAY}
-        command: bash -c "sudo chown -R postgres:postgres /var/lib/postgresql && sudo service postgresql start && infinite-loop"
+        command: bash -c "sudo chmod -R /var/lib/postgresql && sudo chown -R postgres:postgres /var/lib/postgresql && sudo service postgresql start && infinite-loop"
 
     # =======================================================================================================    
     project-python-crawler: # service name
