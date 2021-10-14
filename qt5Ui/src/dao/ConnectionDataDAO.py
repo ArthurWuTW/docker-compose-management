@@ -4,7 +4,9 @@ import os
 from utils.JsonFileUtil import JsonFileUtil
 from utils.Const import Const
 
+
 class ConnectionDataDAO():
+
     def __init__(self):
         self.fileUtil = JsonFileUtil()
         self.data = {Const.DATA: []}
@@ -17,9 +19,9 @@ class ConnectionDataDAO():
         self.fileUtil.saveFile(connectionData)
 
     def addConnectionBySshConfig(self, sshConfig):
-        if sshConfig.getUsername()+'@'+sshConfig.getIP() not in self.data[Const.DATA]:
+        if sshConfig.getUsername() + '@' + sshConfig.getIP() not in self.data[Const.DATA]:
             self.data[Const.DATA].append({
-                Const.MACHINE: sshConfig.getUsername()+'@'+sshConfig.getIP(),
+                Const.MACHINE: sshConfig.getUsername() + '@' + sshConfig.getIP(),
                 Const.DOCKER_COMPOSE_TYPE: '',
                 Const.DEPLOY_STATUS: ''
             })

@@ -6,7 +6,9 @@ from model.MachineInfo import MachineInfo
 from utils.Const import Const
 from model.EnterShellConfig import EnterShellConfig
 
+
 class UiMainWindow(Ui_MainWindowBase):
+
     def __init__(self):
         super().__init__()
         self.qDialogCreateRsaKey = None
@@ -95,7 +97,7 @@ class UiMainWindow(Ui_MainWindowBase):
 
     def updateCombobox(self, preList):
         self.comboBox.clear()
-        self.comboBox.addItems(preList+self.projectDirData[Const.DOCKER_COMPOSE_TYPE])
+        self.comboBox.addItems(preList + self.projectDirData[Const.DOCKER_COMPOSE_TYPE])
 
     def onItemClicked(self, item, column):
         self.lineEditMachineName.setText(item.text(0))
@@ -133,5 +135,4 @@ class UiMainWindow(Ui_MainWindowBase):
     
     def isNotEmpty(self, text):
         return True if text != Const.EMPTY else False
-
 

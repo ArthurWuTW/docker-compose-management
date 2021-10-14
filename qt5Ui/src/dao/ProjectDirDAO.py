@@ -4,6 +4,7 @@ import os
 
 
 class ProjectDirDAO():
+
     def __init__(self):
         self.fileUtil = JsonFileUtil()
         self.data = {'dockerComposeType':[], 'projectDir':''}

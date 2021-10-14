@@ -3,7 +3,9 @@ from utils.Const import Const
 import glob
 import os
 
+
 class JsonFileUtil():
+
     def saveFile(self, data):
         with open(Const.CONNECTION_DATA_FILE, 'w') as file:
             json.dump(data, file)
@@ -21,4 +23,4 @@ class JsonFileUtil():
             json.dump(data, file)
 
     def getDockerComposeTypesByPrefix(self, regex, projectDir):
-        return [os.path.basename(x) for x in glob.glob(projectDir+'/'+regex)]
+        return [os.path.basename(x) for x in glob.glob(projectDir + '/' + regex)]

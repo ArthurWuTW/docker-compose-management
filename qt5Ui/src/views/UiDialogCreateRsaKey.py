@@ -4,6 +4,7 @@ from controller.DialogCreateRsaKeyProcessor import DialogCreateRsaKeyProcessor
 from model.SSHConfig import SSHConfig
 from utils.Const import Const
 
+
 class UiDialogCreateRsaKey(Ui_DialogCreateRsaKeyBase):
 
     def __init__(self):
