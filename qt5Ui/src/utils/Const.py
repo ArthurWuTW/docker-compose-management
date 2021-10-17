@@ -15,5 +15,5 @@ class Const():
     DOCKER_COMPOSE_TYPE = 'dockerComposeType'
     DEPLOY_STATUS = 'deployStatus'
     BACKGROUND_JOB_RUNNING = "background job running"
-    TWO_SPACE_OR_MORE = '\s\s+'
+    TWO_SPACE_OR_MORE = '\s\s\s+'
     LOST_CONNECTION = "Lost Connection"

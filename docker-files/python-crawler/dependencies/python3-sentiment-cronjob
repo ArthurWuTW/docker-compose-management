@@ -1,0 +1,1 @@
+00 18 * * * python3 /home/user/Desktop/sentiment-analyze-test/youtube_caption.py >> /var/log/sentiment-cron.log 2>&1

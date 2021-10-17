@@ -36,7 +36,7 @@ services:
             - ${HOME_DIR}/Desktop:/home/${CONTAINER_USER}/Desktop
         environment:
             - DISPLAY=${DISPLAY}
-        command: bash -c "infinite-loop"
+        command: bash -c "sudo service cron start && sudo service cron restart && infinite-loop"
 
 
     project-spring-java: # service name
